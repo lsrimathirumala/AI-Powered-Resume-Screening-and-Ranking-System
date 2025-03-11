@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Screening</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>AI-Powered Resume Screening</h1>
+    </header>
+    
+    <main>
+        <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
+            <label for="job_description">Enter Job Description:</label>
+            <textarea name="job_description" id="job_description" rows="5" required></textarea>
+
+            <label for="resumes">Upload Resumes (PDF, DOCX, TXT):</label>
+            <input type="file" name="resumes" id="resumes" multiple required>
+
+            <button type="submit">Analyze Resumes</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>Powered by AI | Transforming Hiring with Data-Driven Insights</p>
+    </footer>
+</body>
+</html>

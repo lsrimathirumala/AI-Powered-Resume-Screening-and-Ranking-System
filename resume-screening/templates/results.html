@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Ranking Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Resume Ranking Results</h1>
+    </header>
+
+    <main>
+        <h2>Ranked Resumes</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Resume Name</th>
+                    <th>Matching Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i, (resume, score) in enumerate(results, start=1) %}
+                <tr>
+                    <td>{{ i }}</td>
+                    <td>{{ resume }}</td>
+                    <td>{{ '%.2f'|format(score * 100) }}%</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2>Extracted Resume Texts</h2>
+        {% for filename, text in parsed_data.items() %}
+            <h3>{{ filename }}</h3>
+            <textarea readonly rows="10">{{ text }}</textarea>
+        {% endfor %}
+
+        <a href="{{ url_for('index') }}" class="btn">Go Back</a>
+    </main>
+
+    <footer>
+        <p>AI Resume Screening | Efficiency & Fairness in Hiring</p>
+    </footer>
+</body>
+</html>
